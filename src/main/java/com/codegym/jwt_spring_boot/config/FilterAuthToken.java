@@ -1,6 +1,6 @@
 package com.codegym.jwt_spring_boot.config;
 
-import com.codegym.jwt_spring_boot.controller.LoginController;
+import com.codegym.jwt_spring_boot.controller.AuthController;
 import com.codegym.jwt_spring_boot.service.IAccountService;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +59,7 @@ public class FilterAuthToken extends OncePerRequestFilter {
     // lấy username từ token
     public String getUserNameFromJwtToken(String token) {
         String userName = Jwts.parser()
-                .setSigningKey(LoginController.PRIVATE_KEY)
+                .setSigningKey(AuthController.PRIVATE_KEY)
                 .parseClaimsJws(token)
                 .getBody().getSubject();
         return userName;
